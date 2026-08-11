@@ -1,0 +1,129 @@
+{
+  "name": "JobOpportunity",
+  "type": "object",
+  "properties": {
+    "company": {
+      "type": "string"
+    },
+    "role": {
+      "type": "string"
+    },
+    "job_description": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Discovered",
+        "Evaluating",
+        "Apply",
+        "Applied",
+        "Recruiter Contact",
+        "Interview",
+        "Final Interview",
+        "Offer",
+        "Declined",
+        "Closed"
+      ],
+      "default": "Discovered"
+    },
+    "fit_score": {
+      "type": "number",
+      "default": 0
+    },
+    "career_alignment": {
+      "type": "number",
+      "default": 0
+    },
+    "skills_alignment": {
+      "type": "number",
+      "default": 0
+    },
+    "leadership_alignment": {
+      "type": "number",
+      "default": 0
+    },
+    "domain_alignment": {
+      "type": "number",
+      "default": 0
+    },
+    "strategic_alignment": {
+      "type": "number",
+      "default": 0
+    },
+    "potential_concerns": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "strongest_evidence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "real_gaps": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "presentation_gaps": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "resume_id": {
+      "type": "string"
+    },
+    "cover_letter": {
+      "type": "string"
+    },
+    "contacts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "networking_notes": {
+      "type": "string"
+    },
+    "interview_notes": {
+      "type": "string"
+    },
+    "salary": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    },
+    "work_arrangement": {
+      "type": "string"
+    },
+    "application_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "follow_up_date": {
+      "type": "string",
+      "format": "date"
+    }
+  },
+  "required": [
+    "company",
+    "role"
+  ],
+  "rls": {
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

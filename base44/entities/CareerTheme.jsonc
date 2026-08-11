@@ -1,0 +1,45 @@
+{
+  "name": "CareerTheme",
+  "type": "object",
+  "properties": {
+    "theme": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "frequency": {
+      "type": "string",
+      "enum": [
+        "Recurring",
+        "Frequent",
+        "Occasional"
+      ],
+      "default": "Recurring"
+    },
+    "supporting_evidence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "confidence": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "required": [
+    "theme"
+  ],
+  "rls": {
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

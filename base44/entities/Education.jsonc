@@ -1,0 +1,62 @@
+{
+  "name": "Education",
+  "type": "object",
+  "properties": {
+    "institution": {
+      "type": "string"
+    },
+    "program": {
+      "type": "string"
+    },
+    "major": {
+      "type": "string"
+    },
+    "focus": {
+      "type": "string"
+    },
+    "start_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "end_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "credits_completed": {
+      "type": "string"
+    },
+    "degree_earned": {
+      "type": "boolean",
+      "default": false
+    },
+    "degree_not_earned_reason": {
+      "type": "string"
+    },
+    "relevant_coursework": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "capstone": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "institution"
+  ],
+  "rls": {
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

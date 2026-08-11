@@ -1,0 +1,61 @@
+{
+  "name": "Resume",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "Master",
+        "Targeted",
+        "ATS"
+      ],
+      "default": "Master"
+    },
+    "version": {
+      "type": "string",
+      "default": "V1"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Draft",
+        "RC",
+        "Final"
+      ],
+      "default": "Draft"
+    },
+    "release_candidate": {
+      "type": "boolean",
+      "default": false
+    },
+    "target_opportunity_id": {
+      "type": "string"
+    },
+    "archetype": {
+      "type": "string"
+    },
+    "change_log": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "title"
+  ],
+  "rls": {
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "name": "InterviewAnswer",
+  "type": "object",
+  "properties": {
+    "session_id": {
+      "type": "string"
+    },
+    "phase": {
+      "type": "string"
+    },
+    "question": {
+      "type": "string"
+    },
+    "answer": {
+      "type": "string"
+    },
+    "extracted_facts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "linked_entity_type": {
+      "type": "string"
+    },
+    "linked_entity_id": {
+      "type": "string"
+    },
+    "confidence": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "required": [
+    "question",
+    "answer"
+  ],
+  "rls": {
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

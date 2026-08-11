@@ -1,0 +1,74 @@
+{
+  "name": "CareerStory",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "Leadership",
+        "Strategy",
+        "Failure",
+        "Innovation",
+        "Conflict",
+        "Mentoring",
+        "Technical Decision",
+        "Executive Influence",
+        "Customer Challenge",
+        "Transformation",
+        "AI",
+        "Crisis",
+        "Career Pivot"
+      ]
+    },
+    "situation": {
+      "type": "string"
+    },
+    "task": {
+      "type": "string"
+    },
+    "action": {
+      "type": "string"
+    },
+    "result": {
+      "type": "string"
+    },
+    "learning": {
+      "type": "string"
+    },
+    "linked_accomplishment_id": {
+      "type": "string"
+    },
+    "is_locked": {
+      "type": "boolean",
+      "default": false
+    },
+    "evidence_level": {
+      "type": "string",
+      "enum": [
+        "USER_CONFIRMED",
+        "DOCUMENT_SUPPORTED",
+        "AI_INFERRED",
+        "UNVERIFIED"
+      ],
+      "default": "USER_CONFIRMED"
+    }
+  },
+  "required": [
+    "title",
+    "category"
+  ],
+  "rls": {
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

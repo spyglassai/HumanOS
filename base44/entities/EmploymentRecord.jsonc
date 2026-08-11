@@ -1,0 +1,115 @@
+{
+  "name": "EmploymentRecord",
+  "type": "object",
+  "properties": {
+    "company": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "start_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "end_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "current": {
+      "type": "boolean",
+      "default": false
+    },
+    "location": {
+      "type": "string"
+    },
+    "employment_type": {
+      "type": "string",
+      "enum": [
+        "Full-time",
+        "Part-time",
+        "Contract",
+        "Consulting",
+        "Internship",
+        "Other"
+      ]
+    },
+    "manager_level": {
+      "type": "string"
+    },
+    "team": {
+      "type": "string"
+    },
+    "customers": {
+      "type": "string"
+    },
+    "scope": {
+      "type": "string"
+    },
+    "technologies": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "responsibilities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "major_projects": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "achievements": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "challenges": {
+      "type": "string"
+    },
+    "failures": {
+      "type": "string"
+    },
+    "lessons": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "is_significant": {
+      "type": "boolean",
+      "default": true
+    },
+    "evidence_level": {
+      "type": "string",
+      "enum": [
+        "USER_CONFIRMED",
+        "DOCUMENT_SUPPORTED",
+        "AI_INFERRED",
+        "UNVERIFIED"
+      ],
+      "default": "USER_CONFIRMED"
+    }
+  },
+  "required": [
+    "company",
+    "title"
+  ],
+  "rls": {
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

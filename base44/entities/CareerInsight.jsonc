@@ -1,0 +1,45 @@
+{
+  "name": "CareerInsight",
+  "type": "object",
+  "properties": {
+    "insight": {
+      "type": "string"
+    },
+    "why": {
+      "type": "string"
+    },
+    "supporting_evidence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "accepted",
+        "modified",
+        "rejected"
+      ],
+      "default": "pending"
+    },
+    "category": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "insight"
+  ],
+  "rls": {
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

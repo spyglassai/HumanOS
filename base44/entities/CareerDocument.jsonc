@@ -1,0 +1,70 @@
+{
+  "name": "CareerDocument",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "Resume",
+        "Performance Review",
+        "Certificate",
+        "Presentation",
+        "Article",
+        "Project Document",
+        "Writing Sample",
+        "Job Description",
+        "Interview Notes",
+        "Portfolio",
+        "Other"
+      ],
+      "default": "Other"
+    },
+    "file_url": {
+      "type": "string"
+    },
+    "linked_roles": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "linked_projects": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "linked_skills": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "linked_accomplishments": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title"
+  ],
+  "rls": {
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

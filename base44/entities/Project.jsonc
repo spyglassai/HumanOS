@@ -1,0 +1,92 @@
+{
+  "name": "Project",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "company": {
+      "type": "string"
+    },
+    "role": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "problem": {
+      "type": "string"
+    },
+    "why_it_mattered": {
+      "type": "string"
+    },
+    "who_affected": {
+      "type": "string"
+    },
+    "environment_size": {
+      "type": "string"
+    },
+    "constraints": {
+      "type": "string"
+    },
+    "options_considered": {
+      "type": "string"
+    },
+    "recommendation": {
+      "type": "string"
+    },
+    "what_built": {
+      "type": "string"
+    },
+    "who_agreed": {
+      "type": "string"
+    },
+    "resistance": {
+      "type": "string"
+    },
+    "what_changed": {
+      "type": "string"
+    },
+    "reused": {
+      "type": "boolean",
+      "default": false
+    },
+    "organization_learned": {
+      "type": "string"
+    },
+    "linked_role_id": {
+      "type": "string"
+    },
+    "linked_accomplishment_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence_level": {
+      "type": "string",
+      "enum": [
+        "USER_CONFIRMED",
+        "DOCUMENT_SUPPORTED",
+        "AI_INFERRED",
+        "UNVERIFIED"
+      ],
+      "default": "USER_CONFIRMED"
+    }
+  },
+  "required": [
+    "title"
+  ],
+  "rls": {
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

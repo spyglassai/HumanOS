@@ -1,0 +1,61 @@
+{
+  "name": "LeadershipExperience",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "Formal Management",
+        "Team Leadership",
+        "Mentoring",
+        "Coaching",
+        "Technical Leadership",
+        "Executive Influence",
+        "Cross-Functional",
+        "Program Leadership",
+        "Crisis Leadership",
+        "Thought Leadership",
+        "Knowledge Sharing"
+      ]
+    },
+    "description": {
+      "type": "string"
+    },
+    "scope": {
+      "type": "string"
+    },
+    "people_count": {
+      "type": "number"
+    },
+    "details": {
+      "type": "string"
+    },
+    "linked_role_id": {
+      "type": "string"
+    },
+    "evidence_level": {
+      "type": "string",
+      "enum": [
+        "USER_CONFIRMED",
+        "DOCUMENT_SUPPORTED",
+        "AI_INFERRED",
+        "UNVERIFIED"
+      ],
+      "default": "USER_CONFIRMED"
+    }
+  },
+  "required": [
+    "type"
+  ],
+  "rls": {
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

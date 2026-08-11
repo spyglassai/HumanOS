@@ -1,0 +1,72 @@
+{
+  "name": "InterviewStory",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "Leadership",
+        "Strategy",
+        "Failure",
+        "Innovation",
+        "Conflict",
+        "Mentoring",
+        "Technical Decision",
+        "Executive Influence",
+        "Customer Challenge",
+        "Transformation",
+        "AI",
+        "Crisis",
+        "Career Pivot"
+      ]
+    },
+    "question_type": {
+      "type": "string"
+    },
+    "recommended_for": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "situation": {
+      "type": "string"
+    },
+    "task": {
+      "type": "string"
+    },
+    "action": {
+      "type": "string"
+    },
+    "result": {
+      "type": "string"
+    },
+    "learning": {
+      "type": "string"
+    },
+    "linked_accomplishment_id": {
+      "type": "string"
+    },
+    "is_locked": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "title"
+  ],
+  "rls": {
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

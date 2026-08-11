@@ -1,0 +1,71 @@
+{
+  "name": "ResumeSection",
+  "type": "object",
+  "properties": {
+    "resume_id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "Executive Summary",
+        "Career Accomplishments",
+        "Professional Experience",
+        "Major Projects",
+        "Leadership Experience",
+        "Early Career",
+        "Education",
+        "Certifications",
+        "Professional Development",
+        "Speaking",
+        "Thought Leadership",
+        "Products Built",
+        "Innovation",
+        "Awards",
+        "Professional Philosophy",
+        "Skills",
+        "Technologies",
+        "Volunteer Work",
+        "Publications",
+        "Custom"
+      ]
+    },
+    "content": {
+      "type": "string"
+    },
+    "lock_state": {
+      "type": "string",
+      "enum": [
+        "Open",
+        "Locked",
+        "Surgical Edit Only"
+      ],
+      "default": "Open"
+    },
+    "edit_objectives": {
+      "type": "string"
+    },
+    "order": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "required": [
+    "resume_id",
+    "title"
+  ],
+  "rls": {
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

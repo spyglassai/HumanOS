@@ -1,0 +1,66 @@
+{
+  "name": "CareerArchetype",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "fit_score": {
+      "type": "number",
+      "default": 0
+    },
+    "supporting_evidence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "role_examples": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "strengths": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "gaps": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "recommended_narrative": {
+      "type": "string"
+    },
+    "recommended_keywords": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "development_opportunities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "rls": {
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

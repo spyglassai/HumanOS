@@ -1,0 +1,61 @@
+{
+  "name": "ProfessionalIdentity",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "confidence_score": {
+      "type": "number",
+      "default": 0
+    },
+    "evidence_summary": {
+      "type": "string"
+    },
+    "top_accomplishments": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "top_roles": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "potential_job_titles": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "potential_weaknesses": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "underrepresented_reason": {
+      "type": "string"
+    },
+    "is_primary": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "rls": {
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

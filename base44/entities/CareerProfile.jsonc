@@ -1,0 +1,62 @@
+{
+  "name": "CareerProfile",
+  "type": "object",
+  "properties": {
+    "display_name": {
+      "type": "string",
+      "description": "How the user refers to themselves professionally"
+    },
+    "headline": {
+      "type": "string"
+    },
+    "current_identity": {
+      "type": "string",
+      "description": "Current primary professional identity label"
+    },
+    "welcome_reason": {
+      "type": "string",
+      "description": "Why the user came to The Human OS"
+    },
+    "completeness_discovery": {
+      "type": "number",
+      "default": 0
+    },
+    "completeness_employment": {
+      "type": "number",
+      "default": 0
+    },
+    "completeness_accomplishments": {
+      "type": "number",
+      "default": 0
+    },
+    "completeness_identity": {
+      "type": "number",
+      "default": 0
+    },
+    "completeness_interview": {
+      "type": "number",
+      "default": 0
+    },
+    "voice_characteristics": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "voice_approved": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "rls": {
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

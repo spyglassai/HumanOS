@@ -1,0 +1,55 @@
+{
+  "name": "Skill",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "evidence_summary": {
+      "type": "string"
+    },
+    "linked_accomplishment_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "linked_role_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "confidence": {
+      "type": "number",
+      "default": 0
+    },
+    "evidence_level": {
+      "type": "string",
+      "enum": [
+        "USER_CONFIRMED",
+        "DOCUMENT_SUPPORTED",
+        "AI_INFERRED",
+        "UNVERIFIED"
+      ],
+      "default": "USER_CONFIRMED"
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "rls": {
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}
