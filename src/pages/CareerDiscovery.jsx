@@ -2,10 +2,10 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import { base44 } from "@/api/base44Client";
 import { useCareerData } from "@/hooks/useCareerData";
 import { CAREER_PHASES, buildDiscoveryPrompt } from "../../base44/shared/careerAI";
-import { PageHeader, PageBody, Card, SectionLabel, Badge } from "@/components/ui-primitives";
+import { PageBody, Card, SectionLabel, Badge } from "@/components/ui-primitives";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { Send, Check, Loader2, Sparkles, ArrowRight } from "lucide-react";
+import { Send, Check, Loader2, Sparkles, ArrowRight, Route } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export default function CareerDiscovery() {
@@ -17,9 +17,11 @@ export default function CareerDiscovery() {
   const [facts, setFacts] = useState([]);
   const [answersCount, setAnswersCount] = useState(0);
   const [session, setSession] = useState(null);
+  const [pathOpen, setPathOpen] = useState(false);
   const scrollRef = useRef(null);
 
   const phase = CAREER_PHASES[phaseIndex];
+  const progressPct = Math.round(((phaseIndex + 1) / CAREER_PHASES.length) * 100);
 
   useEffect(() => {
     base44.entities.InterviewAnswer.list().then((a) => setAnswersCount(a.length)).catch(() => {});
@@ -133,52 +135,84 @@ export default function CareerDiscovery() {
 
   return (
     <div className="animate-fade-in">
-      <PageHeader
-        eyebrow="Career Discovery"
-        title="Let's understand your career"
-        description="A long-term, conversational interview — not a form. One thoughtful question at a time, with follow-ups that go deeper. The purpose is discovery."
-      />
-
-      <PageBody>
-        {/* Phase tracker */}
-        <div className="mb-6 flex flex-wrap gap-2">
-          {CAREER_PHASES.map((p, i) => (
-            <button
-              key={p.id}
-              onClick={() => { setPhaseIndex(i); setConversation([]); setFacts([]); }}
-              className={cn(
-                "flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs transition-colors",
-                i === phaseIndex ? "border-accent bg-accent/10 text-accent font-medium" : "border-border text-muted-foreground hover:text-foreground hover:border-foreground/30"
-              )}
-            >
-              <span className={cn("flex h-4 w-4 items-center justify-center rounded-full text-[10px]", i < phaseIndex ? "bg-accent text-white" : i === phaseIndex ? "bg-accent/20 text-accent" : "bg-secondary text-muted-foreground")}>
-                {i < phaseIndex ? <Check className="h-2.5 w-2.5" /> : i + 1}
-              </span>
-              {p.title}
-            </button>
-          ))}
+      <PageBody className="max-w-6xl py-6 lg:py-8">
+        <div className="mb-5 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+          <div className="max-w-2xl">
+            <div className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-accent">
+              Career Discovery
+            </div>
+            <h1 className="font-heading text-3xl font-semibold tracking-tight sm:text-4xl">
+              One question at a time
+            </h1>
+            <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">
+              Start with what is true. The system listens for facts, patterns, and evidence you can confirm.
+            </p>
+          </div>
+          <div className="w-full rounded-xl border border-border/70 bg-card/70 p-4 lg:w-80">
+            <div className="flex items-center justify-between gap-4">
+              <div>
+                <div className="text-xs uppercase tracking-[0.16em] text-muted-foreground">Current phase</div>
+                <div className="mt-1 text-sm font-medium text-foreground">{phase.title}</div>
+              </div>
+              <Badge variant="accent">{phaseIndex + 1} of {CAREER_PHASES.length}</Badge>
+            </div>
+            <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-secondary">
+              <div className="h-full rounded-full bg-accent transition-all duration-500" style={{ width: `${progressPct}%` }} />
+            </div>
+          </div>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-5">
+        <div className="mb-5">
+          <button
+            type="button"
+            onClick={() => setPathOpen((open) => !open)}
+            className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary/40 px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-accent/40 hover:text-foreground"
+          >
+            <Route className="h-3.5 w-3.5 text-accent" />
+            Discovery path
+            <span className="text-accent">{pathOpen ? "Hide" : "Show"}</span>
+          </button>
+          {pathOpen && (
+            <div className="mt-3 flex flex-wrap gap-2">
+              {CAREER_PHASES.map((p, i) => (
+                <button
+                  key={p.id}
+                  onClick={() => { setPhaseIndex(i); setConversation([]); setFacts([]); setPathOpen(false); }}
+                  className={cn(
+                    "flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs transition-colors",
+                    i === phaseIndex ? "border-accent bg-accent/10 text-accent font-medium" : "border-border text-muted-foreground hover:text-foreground hover:border-foreground/30"
+                  )}
+                >
+                  <span className={cn("flex h-4 w-4 items-center justify-center rounded-full text-[10px]", i < phaseIndex ? "bg-accent text-primary-foreground" : i === phaseIndex ? "bg-accent/20 text-accent" : "bg-secondary text-muted-foreground")}>
+                    {i < phaseIndex ? <Check className="h-2.5 w-2.5" /> : i + 1}
+                  </span>
+                  {p.title}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_300px]">
           {/* Conversation */}
-          <div className="lg:col-span-2">
-            <Card className="flex flex-col h-[600px]">
-              <div className="flex items-center justify-between px-5 py-3.5 border-b border-border/60">
+          <div>
+            <Card className="flex min-h-[620px] flex-col overflow-hidden border-accent/15">
+              <div className="flex items-center justify-between gap-4 border-b border-border/60 px-5 py-4">
                 <div>
-                  <div className="text-sm font-semibold">{phase.title}</div>
-                  <div className="text-xs text-muted-foreground">{phase.description}</div>
+                  <div className="text-sm font-semibold text-foreground">{phase.title}</div>
+                  <div className="mt-0.5 text-xs text-muted-foreground">{phase.description}</div>
                 </div>
                 <Badge variant="accent">{answersCount} answers</Badge>
               </div>
 
-              <div ref={scrollRef} className="flex-1 overflow-y-auto px-5 py-5 space-y-4">
+              <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 py-5 space-y-4 sm:px-6">
                 {conversation.map((m, i) => (
                   <div key={i} className={cn("flex", m.role === "user" ? "justify-end" : "justify-start")}>
                     <div className={cn(
-                      "max-w-[85%] rounded-2xl px-4 py-3 text-[14px] leading-relaxed",
+                      "max-w-[88%] rounded-2xl px-5 py-4 text-[15px] leading-relaxed sm:max-w-[76%]",
                       m.role === "user"
                         ? "bg-primary text-primary-foreground rounded-br-sm"
-                        : "bg-secondary text-foreground rounded-bl-sm"
+                        : "bg-secondary/80 text-foreground rounded-bl-sm"
                     )}>
                       {m.content}
                     </div>
@@ -193,16 +227,16 @@ export default function CareerDiscovery() {
                 )}
               </div>
 
-              <div className="border-t border-border/60 p-3">
+              <div className="border-t border-border/60 bg-background/25 p-3">
                 <div className="flex gap-2 items-end">
                   <Textarea
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     onKeyDown={onKeyDown}
                     placeholder="Take your time. Answer as fully as feels right…"
-                    className="resize-none border-0 bg-secondary/50 focus-visible:ring-0 min-h-[60px] max-h-[140px]"
+                    className="min-h-[72px] max-h-[150px] resize-none border-border/70 bg-secondary/50 focus-visible:ring-accent"
                   />
-                  <Button onClick={send} disabled={!input.trim() || thinking} size="icon" className="rounded-full h-10 w-10 shrink-0">
+                  <Button onClick={send} disabled={!input.trim() || thinking} size="icon" className="h-11 w-11 shrink-0 rounded-full">
                     <Send className="h-4 w-4" />
                   </Button>
                 </div>
@@ -219,9 +253,9 @@ export default function CareerDiscovery() {
           </div>
 
           {/* Side panel: extracted facts */}
-          <div className="space-y-5">
+          <div className="space-y-4">
             <Card className="p-5">
-              <SectionLabel className="mb-3">What I'm capturing</SectionLabel>
+              <SectionLabel className="mb-3">Captured facts</SectionLabel>
               {facts.length > 0 ? (
                 <div className="space-y-2.5">
                   {facts.map((f, i) => (
@@ -232,28 +266,16 @@ export default function CareerDiscovery() {
                   ))}
                 </div>
               ) : (
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  As you answer, the system captures concrete career facts — companies, roles, projects, skills — into your private career memory. Nothing is invented.
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  Facts will appear here after you answer. You decide later what becomes part of your career memory.
                 </p>
               )}
             </Card>
 
-            <Card className="p-5">
-              <SectionLabel className="mb-3">This phase</SectionLabel>
-              <p className="text-sm text-muted-foreground leading-relaxed mb-4">{phase.description}</p>
-              <div className="space-y-2">
-                {phase.questions.slice(0, 5).map((q, i) => (
-                  <div key={i} className="flex gap-2 text-xs text-muted-foreground/80">
-                    <span className="text-accent">·</span> {q}
-                  </div>
-                ))}
-              </div>
-            </Card>
-
-            <Card className="p-5 bg-accent/5 border-accent/20">
-              <div className="text-sm font-medium text-accent mb-1.5">A note on depth</div>
-              <p className="text-xs text-muted-foreground leading-relaxed">
-                Reflection is a feature here. You can pause and return any time — your conversation is saved to your private workspace. There's no rush to finish.
+            <Card className="border-accent/20 bg-accent/5 p-5">
+              <div className="mb-1.5 text-sm font-medium text-accent">Private by default</div>
+              <p className="text-xs leading-relaxed text-muted-foreground">
+                Discovery is for reflection first. Nothing becomes public, and inferred patterns still need your confirmation.
               </p>
             </Card>
           </div>
