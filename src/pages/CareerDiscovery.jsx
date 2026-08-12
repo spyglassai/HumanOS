@@ -146,7 +146,7 @@ export default function CareerDiscovery() {
               One question at a time
             </h1>
             <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted-foreground">
-              Start with what is true. The system listens for facts, patterns, and evidence you can confirm.
+              Start with what is true, then go deeper into why choices made sense and what they reveal.
             </p>
           </div>
           <div className="w-full rounded-xl border border-border/70 bg-card/70 p-3.5 lg:w-80">
@@ -266,7 +266,7 @@ export default function CareerDiscovery() {
                 </div>
               ) : (
                 <p className="text-sm leading-relaxed text-muted-foreground">
-                  Facts will appear here after you answer. You decide later what becomes part of your career memory.
+                  Facts, decisions, and patterns will appear here after you answer. You decide later what becomes part of your career memory.
                 </p>
               )}
             </Card>
@@ -274,7 +274,7 @@ export default function CareerDiscovery() {
             <Card className="border-accent/20 bg-accent/5 p-5">
               <div className="mb-1.5 text-sm font-medium text-accent">Private by default</div>
               <p className="text-xs leading-relaxed text-muted-foreground">
-                Discovery is for reflection first. Nothing becomes public, and inferred patterns still need your confirmation.
+                Discovery is for reflection first. Nothing becomes public, and inferred patterns remain hypotheses until you confirm them.
               </p>
             </Card>
           </div>
