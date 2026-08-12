@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { base44 } from "@/api/base44Client";
 import { useCareerData } from "@/hooks/useCareerData";
-import { PageHeader, PageBody, Card, SectionLabel, Badge } from "@/components/ui-primitives";
+import { PageHeader, PageBody, Card, Badge } from "@/components/ui-primitives";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { Shield, Lock, Mic, User, Loader2, Check } from "lucide-react";
 
 const VOICE_OPTIONS = ["direct", "analytical", "curious", "practical", "humble", "executive", "technical", "conversational", "warm", "concise"];

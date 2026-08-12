@@ -4,6 +4,52 @@
 
 @layer base {
   :root {
+    color-scheme: dark;
+    --background: 150 24% 4%;
+    --foreground: 42 24% 91%;
+    --card: 152 22% 7%;
+    --card-foreground: 42 24% 91%;
+    --popover: 152 22% 7%;
+    --popover-foreground: 42 24% 91%;
+    --primary: 43 46% 67%;
+    --primary-foreground: 150 24% 5%;
+    --secondary: 150 18% 11%;
+    --secondary-foreground: 42 22% 88%;
+    --muted: 150 15% 13%;
+    --muted-foreground: 52 10% 66%;
+    --accent: 43 46% 61%;
+    --accent-foreground: 150 24% 5%;
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 42 24% 96%;
+    --border: 150 15% 18%;
+    --input: 150 15% 18%;
+    --ring: 43 46% 61%;
+    --chart-1: 43 46% 61%;
+    --chart-2: 158 30% 40%;
+    --chart-3: 190 24% 48%;
+    --chart-4: 31 34% 57%;
+    --chart-5: 88 22% 50%;
+    --radius: 0.75rem;
+    --font-heading: 'Fraunces', ui-serif, Georgia, serif;
+    --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-display: 'Fraunces', ui-serif, Georgia, serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    --sidebar-background: 150 28% 3%;
+    --sidebar-foreground: 42 20% 84%;
+    --sidebar-primary: 43 46% 67%;
+    --sidebar-primary-foreground: 150 24% 5%;
+    --sidebar-accent: 150 18% 10%;
+    --sidebar-accent-foreground: 42 24% 91%;
+    --sidebar-border: 150 15% 16%;
+    --sidebar-ring: 43 46% 61%;
+  }
+
+  .dark {
+    color-scheme: dark;
+  }
+
+  .light {
+    color-scheme: light;
     --background: 40 34% 98%;
     --foreground: 28 14% 13%;
     --card: 0 0% 100%;
@@ -28,11 +74,6 @@
     --chart-3: 150 25% 40%;
     --chart-4: 40 65% 55%;
     --chart-5: 280 30% 50%;
-    --radius: 0.75rem;
-    --font-heading: 'Fraunces', ui-serif, Georgia, serif;
-    --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
-    --font-display: 'Fraunces', ui-serif, Georgia, serif;
-    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     --sidebar-background: 40 34% 98%;
     --sidebar-foreground: 28 14% 22%;
     --sidebar-primary: 28 14% 15%;
@@ -41,36 +82,6 @@
     --sidebar-accent-foreground: 28 14% 15%;
     --sidebar-border: 40 16% 88%;
     --sidebar-ring: 24 42% 48%;
-  }
-
-  .dark {
-    --background: 28 14% 7%;
-    --foreground: 40 20% 92%;
-    --card: 28 14% 9%;
-    --card-foreground: 40 20% 92%;
-    --popover: 28 14% 9%;
-    --popover-foreground: 40 20% 92%;
-    --primary: 40 34% 96%;
-    --primary-foreground: 28 14% 12%;
-    --secondary: 28 10% 16%;
-    --secondary-foreground: 40 20% 92%;
-    --muted: 28 10% 16%;
-    --muted-foreground: 40 10% 65%;
-    --accent: 24 50% 58%;
-    --accent-foreground: 28 14% 10%;
-    --destructive: 0 60% 45%;
-    --destructive-foreground: 40 34% 98%;
-    --border: 28 10% 18%;
-    --input: 28 10% 18%;
-    --ring: 24 50% 58%;
-    --sidebar-background: 28 14% 7%;
-    --sidebar-foreground: 40 20% 85%;
-    --sidebar-primary: 40 34% 96%;
-    --sidebar-primary-foreground: 28 14% 12%;
-    --sidebar-accent: 28 10% 14%;
-    --sidebar-accent-foreground: 40 20% 92%;
-    --sidebar-border: 28 10% 16%;
-    --sidebar-ring: 24 50% 58%;
   }
 }
 
@@ -81,6 +92,8 @@
 
   body {
     @apply bg-background text-foreground font-body antialiased;
+    background-image: linear-gradient(180deg, hsl(150 28% 4%) 0%, hsl(150 24% 3%) 100%);
+    min-height: 100vh;
   }
 
   h1, h2, h3, .font-display {

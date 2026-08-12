@@ -41,8 +41,8 @@ export function Card({ children, className, onClick }) {
     <div
       onClick={onClick}
       className={cn(
-        "rounded-xl border border-border/70 bg-card shadow-sm",
-        onClick && "cursor-pointer transition-shadow hover:shadow-md",
+        "rounded-xl border border-border/80 bg-card shadow-[0_12px_30px_-24px_hsl(var(--accent)/0.45)]",
+        onClick && "cursor-pointer transition-all hover:border-accent/35 hover:shadow-[0_18px_44px_-28px_hsl(var(--accent)/0.65)]",
         className
       )}
     >
@@ -63,8 +63,8 @@ export function EmptyState({ icon: Icon, title, description, action }) {
   return (
     <div className="flex flex-col items-center justify-center text-center py-16 px-6">
       {Icon && (
-        <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-secondary">
-          <Icon className="h-5 w-5 text-muted-foreground" />
+        <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full border border-accent/20 bg-accent/10">
+          <Icon className="h-5 w-5 text-accent" />
         </div>
       )}
       <h3 className="font-heading text-lg font-semibold text-foreground">{title}</h3>
@@ -95,8 +95,8 @@ export function Badge({ children, variant = "default", className }) {
   const variants = {
     default: "bg-secondary text-secondary-foreground border-border",
     accent: "bg-accent/10 text-accent border-accent/20",
-    locked: "bg-amber-50 text-amber-700 border-amber-200",
-    success: "bg-emerald-50 text-emerald-700 border-emerald-200",
+    locked: "bg-accent/10 text-accent border-accent/30",
+    success: "bg-emerald-400/10 text-emerald-300 border-emerald-400/20",
     muted: "bg-muted text-muted-foreground border-border",
   };
   return (

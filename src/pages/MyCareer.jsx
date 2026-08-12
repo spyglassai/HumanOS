@@ -3,7 +3,6 @@ import { base44 } from "@/api/base44Client";
 import EntityCollection from "@/components/EntityCollection";
 import { PageHeader, PageBody, Card, Badge } from "@/components/ui-primitives";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Briefcase, Award, BookOpen, GraduationCap, Shield, Lightbulb, Users, Star } from "lucide-react";
 
 const ROLE_FIELDS = [
   { name: "company", label: "Company" },

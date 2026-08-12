@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { base44 } from "@/api/base44Client";
 import EntityCollection from "@/components/EntityCollection";
-import { PageHeader, PageBody, Card, EmptyState } from "@/components/ui-primitives";
+import { PageHeader, PageBody, Card } from "@/components/ui-primitives";
 import { Button } from "@/components/ui/button";
-import { Upload, Loader2, FolderOpen, FileText } from "lucide-react";
+import { Upload, Loader2, FileText } from "lucide-react";
 
 const DOC_FIELDS = [
   { name: "title", label: "Title" },

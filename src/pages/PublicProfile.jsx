@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { base44 } from "@/api/base44Client";
-import { PageHeader, PageBody, Card, SectionLabel, Badge, EmptyState } from "@/components/ui-primitives";
+import { PageHeader, PageBody, Card, Badge } from "@/components/ui-primitives";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Globe, Loader2, Eye, EyeOff, Lock, Link2 } from "lucide-react";
+import { Globe, Loader2, Eye, EyeOff, Lock } from "lucide-react";
 
 const SECTION_DEFS = [
   { type: "snapshot", title: "Professional Snapshot" },

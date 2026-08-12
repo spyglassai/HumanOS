@@ -5,9 +5,9 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import {
-  Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogTrigger,
+  Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter,
 } from "@/components/ui/dialog";
-import { Card, EmptyState, Badge } from "@/components/ui-primitives";
+import { Card, EmptyState } from "@/components/ui-primitives";
 import { Plus, Pencil, Trash2, Loader2 } from "lucide-react";
 
 function FieldInput({ field, value, onChange }) {

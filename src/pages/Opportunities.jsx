@@ -7,9 +7,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import {
-  Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogTrigger,
+  Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter,
 } from "@/components/ui/dialog";
-import { Plus, Target, Loader2, X, AlertTriangle, Check, Sparkles } from "lucide-react";
+import { Plus, Target, Loader2, AlertTriangle, Check, Sparkles } from "lucide-react";
 
 const STATUSES = ["Discovered", "Evaluating", "Apply", "Applied", "Recruiter Contact", "Interview", "Final Interview", "Offer", "Declined", "Closed"];
 

@@ -5,7 +5,7 @@ import { CAREER_PHASES, buildDiscoveryPrompt } from "../../base44/shared/careerA
 import { PageHeader, PageBody, Card, SectionLabel, Badge } from "@/components/ui-primitives";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { Compass, Send, Check, Loader2, Sparkles, ArrowRight } from "lucide-react";
+import { Send, Check, Loader2, Sparkles, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export default function CareerDiscovery() {

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { base44 } from "@/api/base44Client";
 import { buildResumeDraftPrompt } from "../../base44/shared/careerAI";
-import { Card, SectionLabel, Badge, ConfidenceBar } from "@/components/ui-primitives";
+import { Card, SectionLabel, Badge } from "@/components/ui-primitives";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { Lock, Unlock, PenLine, Loader2, Sparkles, ShieldCheck, Pencil } from "lucide-react";
+import { Lock, Unlock, PenLine, Loader2, Sparkles, ShieldCheck } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const SECTION_TYPES = [

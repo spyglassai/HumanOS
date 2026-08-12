@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
 import { useCareerData } from "@/hooks/useCareerData";
-import { PageHeader, PageBody, Card, SectionLabel, ConfidenceBar, EmptyState } from "@/components/ui-primitives";
+import { PageBody, Card, SectionLabel, ConfidenceBar, EmptyState } from "@/components/ui-primitives";
 import { Button } from "@/components/ui/button";
-import { Compass, FileText, Target, Sparkles, ArrowRight, TrendingUp, Layers, Briefcase } from "lucide-react";
+import { Compass, FileText, Target, Sparkles, ArrowRight, Layers, Briefcase } from "lucide-react";
 
 export default function Home() {
   const { profile, loading, counts, refresh } = useCareerData();
