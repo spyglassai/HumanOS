@@ -22,6 +22,7 @@ export default function CareerDiscovery() {
 
   const phase = CAREER_PHASES[phaseIndex];
   const progressPct = Math.round(((phaseIndex + 1) / CAREER_PHASES.length) * 100);
+  const conversationPanelHeight = "clamp(340px, calc(100vh - 19rem), 520px)";
 
   useEffect(() => {
     base44.entities.InterviewAnswer.list().then((a) => setAnswersCount(a.length)).catch(() => {});
@@ -135,23 +136,23 @@ export default function CareerDiscovery() {
 
   return (
     <div className="animate-fade-in">
-      <PageBody className="max-w-6xl py-6 lg:py-8">
-        <div className="mb-5 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+      <PageBody className="max-w-6xl py-4 lg:py-6">
+        <div className="mb-4 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-2xl">
-            <div className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-accent">
+            <div className="mb-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-accent">
               Career Discovery
             </div>
-            <h1 className="font-heading text-3xl font-semibold tracking-tight sm:text-4xl">
+            <h1 className="font-heading text-2xl font-semibold tracking-tight sm:text-3xl">
               One question at a time
             </h1>
-            <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">
+            <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted-foreground">
               Start with what is true. The system listens for facts, patterns, and evidence you can confirm.
             </p>
           </div>
-          <div className="w-full rounded-xl border border-border/70 bg-card/70 p-4 lg:w-80">
+          <div className="w-full rounded-xl border border-border/70 bg-card/70 p-3.5 lg:w-80">
             <div className="flex items-center justify-between gap-4">
               <div>
-                <div className="text-xs uppercase tracking-[0.16em] text-muted-foreground">Current phase</div>
+                <div className="text-[10px] uppercase tracking-[0.16em] text-muted-foreground">Current phase</div>
                 <div className="mt-1 text-sm font-medium text-foreground">{phase.title}</div>
               </div>
               <Badge variant="accent">{phaseIndex + 1} of {CAREER_PHASES.length}</Badge>
@@ -159,45 +160,43 @@ export default function CareerDiscovery() {
             <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-secondary">
               <div className="h-full rounded-full bg-accent transition-all duration-500" style={{ width: `${progressPct}%` }} />
             </div>
+            <button
+              type="button"
+              onClick={() => setPathOpen((open) => !open)}
+              className="mt-3 inline-flex items-center gap-2 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
+            >
+              <Route className="h-3.5 w-3.5 text-accent" />
+              Discovery path
+              <span className="text-accent">{pathOpen ? "Hide" : "Show"}</span>
+            </button>
           </div>
         </div>
 
-        <div className="mb-5">
-          <button
-            type="button"
-            onClick={() => setPathOpen((open) => !open)}
-            className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary/40 px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-accent/40 hover:text-foreground"
-          >
-            <Route className="h-3.5 w-3.5 text-accent" />
-            Discovery path
-            <span className="text-accent">{pathOpen ? "Hide" : "Show"}</span>
-          </button>
-          {pathOpen && (
-            <div className="mt-3 flex flex-wrap gap-2">
-              {CAREER_PHASES.map((p, i) => (
-                <button
-                  key={p.id}
-                  onClick={() => { setPhaseIndex(i); setConversation([]); setFacts([]); setPathOpen(false); }}
-                  className={cn(
-                    "flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs transition-colors",
-                    i === phaseIndex ? "border-accent bg-accent/10 text-accent font-medium" : "border-border text-muted-foreground hover:text-foreground hover:border-foreground/30"
-                  )}
-                >
-                  <span className={cn("flex h-4 w-4 items-center justify-center rounded-full text-[10px]", i < phaseIndex ? "bg-accent text-primary-foreground" : i === phaseIndex ? "bg-accent/20 text-accent" : "bg-secondary text-muted-foreground")}>
-                    {i < phaseIndex ? <Check className="h-2.5 w-2.5" /> : i + 1}
-                  </span>
-                  {p.title}
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
+        {pathOpen && (
+          <div className="mb-4 flex flex-wrap gap-2">
+            {CAREER_PHASES.map((p, i) => (
+              <button
+                key={p.id}
+                onClick={() => { setPhaseIndex(i); setConversation([]); setFacts([]); setPathOpen(false); }}
+                className={cn(
+                  "flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs transition-colors",
+                  i === phaseIndex ? "border-accent bg-accent/10 text-accent font-medium" : "border-border text-muted-foreground hover:text-foreground hover:border-foreground/30"
+                )}
+              >
+                <span className={cn("flex h-4 w-4 items-center justify-center rounded-full text-[10px]", i < phaseIndex ? "bg-accent text-primary-foreground" : i === phaseIndex ? "bg-accent/20 text-accent" : "bg-secondary text-muted-foreground")}>
+                  {i < phaseIndex ? <Check className="h-2.5 w-2.5" /> : i + 1}
+                </span>
+                {p.title}
+              </button>
+            ))}
+          </div>
+        )}
 
         <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_300px]">
           {/* Conversation */}
           <div>
-            <Card className="flex min-h-[620px] flex-col overflow-hidden border-accent/15">
-              <div className="flex items-center justify-between gap-4 border-b border-border/60 px-5 py-4">
+            <Card className="flex flex-col overflow-hidden border-accent/15" style={{ height: conversationPanelHeight }}>
+              <div className="flex items-center justify-between gap-4 border-b border-border/60 px-5 py-3">
                 <div>
                   <div className="text-sm font-semibold text-foreground">{phase.title}</div>
                   <div className="mt-0.5 text-xs text-muted-foreground">{phase.description}</div>
@@ -205,11 +204,11 @@ export default function CareerDiscovery() {
                 <Badge variant="accent">{answersCount} answers</Badge>
               </div>
 
-              <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 py-5 space-y-4 sm:px-6">
+              <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 py-4 space-y-4 sm:px-6">
                 {conversation.map((m, i) => (
                   <div key={i} className={cn("flex", m.role === "user" ? "justify-end" : "justify-start")}>
                     <div className={cn(
-                      "max-w-[88%] rounded-2xl px-5 py-4 text-[15px] leading-relaxed sm:max-w-[76%]",
+                      "max-w-[88%] rounded-2xl px-4 py-3 text-[15px] leading-relaxed sm:max-w-[76%] sm:px-5",
                       m.role === "user"
                         ? "bg-primary text-primary-foreground rounded-br-sm"
                         : "bg-secondary/80 text-foreground rounded-bl-sm"
@@ -234,7 +233,7 @@ export default function CareerDiscovery() {
                     onChange={(e) => setInput(e.target.value)}
                     onKeyDown={onKeyDown}
                     placeholder="Take your time. Answer as fully as feels right…"
-                    className="min-h-[72px] max-h-[150px] resize-none border-border/70 bg-secondary/50 focus-visible:ring-accent"
+                    className="min-h-[58px] max-h-[120px] resize-none border-border/70 bg-secondary/50 focus-visible:ring-accent"
                   />
                   <Button onClick={send} disabled={!input.trim() || thinking} size="icon" className="h-11 w-11 shrink-0 rounded-full">
                     <Send className="h-4 w-4" />
